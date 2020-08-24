@@ -1,32 +1,68 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
+  <main id="app">
+    <header id="nav">
+      <nav>
+        <a class="logo">Vuex-app</a>
+        <ul>
+          <li>
+            <a href=""><router-link to="/">Home</router-link></a>
+          </li>
+          <li><a href=""><router-link to="/about">About</router-link></a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    
+    <section>
+      <router-view/>
+    </section>
+  </main>
 </template>
 
 <style>
+body{
+  background: rgb(253, 237, 239);
+}
+html, #app, .home{
+    height: 100%;
+}
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
-
-#nav {
-  padding: 30px;
+header{
+  color: white;
+  background-color: crimson;
 }
-
-#nav a {
+ul{
+  list-style: none;
+}
+h1{
+  margin-bottom:1em ;
+}
+a{
+  text-decoration: none;
+  color: inherit;
+}
+header .logo{
+  font-size: 1.5em;
   font-weight: bold;
-  color: #2c3e50;
+}
+header nav{
+  width: 80%;
+  margin: 0 auto;  
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: .7em;
+}
+header ul{
+  display: flex;
+}
+header ul a{
+  padding: .7em;
+}
+header ul a:hover{
+  background-color: rgb(187, 0, 37);
 }
 
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
 </style>
