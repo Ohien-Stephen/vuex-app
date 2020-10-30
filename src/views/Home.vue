@@ -6,16 +6,18 @@
         <input v-model="newlink" type="text" placeholder="add link here...." />
       </form>
 
+      {{message2}}
+
       <ul class="items">
         <li v-for="(link, index) in links" v-bind:key="index">
           {{link}}
-          <button>Remove</button>
+          <button @click="removeLink(index)">Remove</button>
         </li>
       </ul>
     </div>
 
     <div class="right">
-      <HelloWorld />
+        <HelloWorld />
     </div>
   </div>
 </template>
@@ -39,16 +41,21 @@ export default {
   },
 
   computed:{
-    ...mapState(['message','links'])
+    ...mapState(['message','links']),
   },
 
   methods:{
     ...mapMutations([
-      'ADD_LINK'
+      'ADD_LINK', 'REMOVE_LINK'
       ]),
     addLink(){
+      //this.$store.commit('ADD_LINK', this.newlink)
       this.ADD_LINK(this.newlink)
+      //this.ADD_LINK({link:this.newlink})
       this.newlink = ''
+    },
+    removeLink(link){
+      this.REMOVE_LINK(link)
     }
   }
 }
@@ -65,8 +72,8 @@ div.left{
 }
 div.right{
   background: rgb(248, 238, 239);
-  flex: 1;
   padding: 30px;
+  flex: 1;
   height: 82vh;
 }
 .div-input{

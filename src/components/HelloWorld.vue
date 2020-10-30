@@ -2,23 +2,43 @@
   <div class="hello">
       <h1>A different Component</h1>
       <p>There are currently {{linksCount}} Links</p>
-      <button>Remove all links</button>
+      <button @click="removeAllLinksNow">Remove all links</button>
+      <p v-show="linksCount <= 0">{{msg}}</p>
   </div>
 </template>
 
 <script>
-import {mapState, mapGetters} from 'vuex'
+import {mapState, mapGetters, mapActions} from 'vuex'
 
 export default {
   name: 'HelloWorld',
+  data(){
+    return{
+      msg : "",
+    }
+  },
+
   computed:{
     ...mapState([
       'links'
-      ]),
+    ]),
     ...mapGetters([
       'linksCount'
       ])
+  },
+
+  methods:{
+    ...mapActions([
+      'removeAll','removeAllLinks'
+      ]),
+    removeAllLinksNow(){
+      //this.removeAll()
+      this.removeAllLinks().then(()=>{
+        this.msg = "All links have being removed"
+      })
+    }
   }
+
 }
 </script>
 
@@ -31,6 +51,7 @@ export default {
   outline: none;
   font-size: .8em;
   margin-top: 2em;
+  margin-bottom: 1em;
   cursor: pointer;
   padding: 10px 15px;
   font-size: 1em;
